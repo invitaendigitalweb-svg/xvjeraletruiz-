@@ -1,0 +1,1316 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Nuestra Invitación</title>
+
+  <!-- METATAGS PARA MINIATURA DE WHATSAPP -->
+  <meta property="og:title" content="Nuestra Invitación">
+  <meta property="og:description" content="¡Estás invitado a nuestra boda! Haz click para ver los detalles.">
+  <meta property="og:image" content="miniatura.jpg">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="300">
+  <meta property="og:image:height" content="300">
+
+  <!-- Fuentes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- html2canvas para descargar pases -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      background-color: #FFFFFF;
+      font-family: 'Cinzel', serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    /* MARCO DE CELULAR CON PARALLAX */
+    .mobile-screen {
+      width: 100%;
+      max-width: 430px;
+      height: 100vh;
+      height: 100dvh;
+      position: relative;
+      background-color: #FFFFFF;
+      box-shadow: 0 0 30px rgba(0,0,0,0.15);
+      overflow: hidden;
+    }
+
+    .mobile-screen::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -15%;
+      width: 130%;
+      height: 160%;
+      background-image: url('fondo.jpg');
+      background-size: cover;
+      background-position: top center;
+      background-repeat: no-repeat;
+      z-index: 0;
+      pointer-events: none;
+      transform: translateY(var(--bg-y, 0%));
+      transition: transform 0.15s ease-out;
+      will-change: transform;
+    }
+
+    .invitation-wrapper {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      z-index: 1;
+      overflow-y: auto;
+      overflow-x: hidden;
+      -webkit-overflow-scrolling: touch;
+      background: transparent;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      scroll-behavior: smooth;
+      opacity: 1;
+      visibility: visible;
+      padding-bottom: 50px;
+    }
+
+    .invitation-wrapper::-webkit-scrollbar {
+      display: none;
+      width: 0;
+      height: 0;
+    }
+
+    /* BOTÓN FLOTANTE DE MÚSICA */
+    .music-btn {
+      position: absolute;
+      bottom: 25px;
+      right: 20px;
+      width: 42px;
+      height: 42px;
+      background: linear-gradient(135deg, #A68B5B 0%, #8C6D46 100%);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 4px 12px rgba(140, 109, 70, 0.4);
+      cursor: pointer;
+      z-index: 9;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 1s ease, transform 0.2s ease, visibility 1s ease;
+    }
+
+    .music-btn.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .music-btn:active {
+      transform: scale(0.9);
+    }
+
+    .music-btn svg {
+      width: 20px;
+      height: 20px;
+      fill: #ffffff;
+    }
+
+    .music-btn.playing svg {
+      animation: pulseMusic 2s infinite linear;
+    }
+
+    @keyframes pulseMusic {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.12); }
+      100% { transform: scale(1); }
+    }
+
+    /* SECCIONES DE IMÁGENES */
+    .image-section {
+      width: 100%;
+      background-color: transparent;
+      display: block;
+      margin: 0;
+      padding: 0;
+      line-height: 0;
+      position: relative;
+    }
+
+    .image-section img {
+      width: 100%;
+      height: auto;
+      display: block;
+      margin: 0;
+      padding: 0;
+      filter: drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.03));
+    }
+
+    /* ESTILOS DE BOTONES CON TIPOGRAFÍA CINZEL Y ALINEACIÓN EXACTA */
+    .ceremonia-container {
+      position: relative;
+      display: block;
+      width: 100%;
+    }
+
+    .map-btn {
+      position: absolute;
+      left: 27.5%;
+      transform: translateX(-50%);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      background: linear-gradient(135deg, #800000 0%, #4a0000 100%);
+      color: #ffffff;
+      font-family: 'Cinzel', serif;
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 8px 14px;
+      border-radius: 25px;
+      border: 1px solid rgba(255, 255, 255, 0.85);
+      box-shadow: 0 4px 15px rgba(74, 0, 0, 0.35);
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      z-index: 5;
+      white-space: nowrap;
+      line-height: normal;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    }
+
+    .map-btn svg {
+      width: 11px;
+      height: 11px;
+      fill: #ffffff;
+      flex-shrink: 0;
+    }
+
+    .map-btn:hover, .map-btn:active {
+      background: linear-gradient(135deg, #600000 0%, #300000 100%);
+      transform: translateX(-50%) scale(0.96);
+      box-shadow: 0 6px 18px rgba(74, 0, 0, 0.5);
+    }
+
+    .btn-ceremonia {
+      top: 42%;
+    }
+
+    .btn-recepcion {
+      top: 81%;
+    }
+
+    /* PORTADA CON FONDO BLANCO ABSOLUTO Y ZOOM ULTRA-FLUIDO */
+    .portada-section {
+      background-color: #FFFFFF;
+      overflow: hidden;
+      z-index: 2;
+    }
+
+    .portada-section img {
+      transform: scale(1.08);
+      transition: transform 2.5s cubic-bezier(0.25, 1, 0.5, 1);
+      will-change: transform;
+    }
+
+    .portada-section.portada-animada img {
+      transform: scale(1);
+    }
+
+    /* PAPÁS (PNG) - ANIMACIÓN ELEGANTE DE ENTRADA Y FLOTADO */
+    .papas-section img {
+      opacity: 0;
+      transform: translateY(-25px);
+      transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.2s, transform 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.2s;
+      will-change: opacity, transform;
+    }
+    
+    .papas-section.papas-animada img {
+      opacity: 1;
+      transform: translateY(0);
+      animation: papasFloat 5s ease-in-out infinite alternate 1.4s;
+    }
+
+    @keyframes papasFloat {
+      0% { transform: translateY(0px) scale(1); }
+      50% { transform: translateY(-5px) scale(1.01); }
+      100% { transform: translateY(0px) scale(1); }
+    }
+
+    /* ANIMACIÓN VERTICAL FLUIDA PARA FECHA Y HORA */
+    .fecha-animada {
+      opacity: 0;
+      transform: translateY(35px);
+      transition: opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1), transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+
+    .fecha-animada.visible-section {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ANIMACIONES SECUNDARIAS DE SCROLL */
+    .slide-left {
+      opacity: 0;
+      transform: translateX(-35px);
+      transition: opacity 1s cubic-bezier(0.25, 1, 0.5, 1), transform 1s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .slide-left.visible-section {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .slide-right {
+      opacity: 0;
+      transform: translateX(35px);
+      transition: opacity 1s cubic-bezier(0.25, 1, 0.5, 1), transform 1s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .slide-right.visible-section {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .scale-up {
+      opacity: 0;
+      transform: scale(0.92);
+      transition: opacity 1s cubic-bezier(0.34, 1.26, 0.64, 1), transform 1s cubic-bezier(0.34, 1.26, 0.64, 1);
+    }
+    .scale-up.visible-section {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .fade-up {
+      opacity: 0;
+      transform: translateY(25px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .fade-up.visible-section {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* CUENTA REGRESIVA CON NÚMEROS EN ROJO QUEMADO */
+    .countdown-section {
+      background-color: transparent;
+      padding: 35px 15px 45px 15px;
+      text-align: center;
+      width: 100%;
+    }
+
+    .countdown-flex {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      max-width: 380px;
+      margin: 0 auto;
+    }
+
+    .countdown-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 65px;
+    }
+
+    .countdown-number {
+      font-size: 42px;
+      font-weight: 600;
+      color: #8B0000;
+      font-family: 'Cormorant Garamond', serif;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .countdown-label {
+      font-size: 15px;
+      color: #8C6D46;
+      font-weight: 600;
+      font-style: italic;
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    .countdown-divider {
+      font-size: 18px;
+      color: #A68B5B;
+      margin-top: -20px;
+      user-select: none;
+    }
+
+    /* ESTILOS DEL ITINERARIO CON ICONOS */
+    .itinerario-section {
+      width: 100%;
+      padding: 35px 22px;
+      background: transparent;
+      line-height: normal;
+    }
+
+    .itinerario-wrapper-inner {
+      max-width: 360px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .itinerario {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 35px;
+    }
+
+    .itinerario::before {
+      content: '';
+      position: absolute;
+      top: 15px;
+      bottom: 15px;
+      left: 75px;
+      width: 2px;
+      background: linear-gradient(180deg, #A68B5B 0%, #8C6D46 100%);
+      z-index: 1;
+    }
+
+    .evento {
+      display: flex;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .lado-izq {
+      width: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .lado-izq .icono {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background: #ffffff;
+      border: 1px solid #A68B5B;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 4px 10px rgba(140, 109, 70, 0.15);
+      padding: 8px;
+    }
+
+    .lado-izq .icono img,
+    .lado-izq .icono svg {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .punto {
+      width: 12px;
+      height: 12px;
+      background: #8C6D46;
+      border: 2px solid #ffffff;
+      border-radius: 50%;
+      margin: 0 10px;
+      flex-shrink: 0;
+      box-shadow: 0 0 0 2px #A68B5B;
+    }
+
+    .lado-der {
+      padding-left: 10px;
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+    }
+
+    .lado-der .hora {
+      font-family: 'Cinzel', serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: #8C6D46;
+      line-height: 1.2;
+      letter-spacing: 0.5px;
+    }
+
+    .lado-der .titulo-evento {
+      font-family: 'Cinzel', serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: #1A1A1A;
+      margin-top: 3px;
+      display: block;
+      letter-spacing: 0.5px;
+    }
+
+    @media(max-width:360px) {
+      .itinerario-section {
+        padding-left: 15px;
+        padding-right: 15px;
+      }
+    }
+
+    /* SOBRE DE BIENVENIDA CON DESAPARICIÓN ULTRA-SUAVE */
+    .envelope-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      height: 100dvh;
+      cursor: pointer;
+      z-index: 10;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #FFFFFF;
+      overflow: hidden;
+      transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), visibility 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .envelope-card {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background-image: url('sobre.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .open.envelope-container {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    /* ESTILOS DE LA FORMULARIO RSVP INTEGRADO (EN ROJO) */
+    .rsvp-container-wrapper {
+      width: 100%;
+      padding: 10px 20px 30px;
+      display: flex;
+      justify-content: center;
+      line-height: normal;
+    }
+
+    .tarjeta-asistencia {
+      width: 100%;
+      background: transparent;
+      border: 1px solid rgba(234, 229, 217, 0.8);
+      border-radius: 25px;
+      padding: 30px 22px;
+      backdrop-filter: blur(5px);
+      box-shadow: 0 10px 30px rgba(74, 0, 0, 0.08);
+      font-family: 'Montserrat', sans-serif;
+      color: #554C3A;
+    }
+
+    .tarjeta-integrante {
+      background: rgba(253, 251, 247, 0.85);
+      border: 1px solid #EAE5D9;
+      border-radius: 15px;
+      padding: 16px;
+      margin-bottom: 15px;
+    }
+
+    .tarjeta-integrante .titulo-integrante {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      color: #8B0000;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .tarjeta-asistencia input[type="text"] {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 10px;
+      border: 1px solid #EAE5D9;
+      background: #ffffff;
+      outline: none;
+      font-family: 'Montserrat', sans-serif;
+      color: #554C3A;
+      font-size: 14px;
+      margin-bottom: 12px;
+      transition: all 0.3s ease;
+    }
+
+    .tarjeta-asistencia input[type="text"]:focus {
+      border-color: #8B0000;
+      box-shadow: 0 0 6px rgba(139, 0, 0, 0.2);
+    }
+
+    .opciones {
+      display: flex;
+      gap: 10px;
+    }
+
+    .opcion {
+      flex: 1;
+    }
+
+    .opcion input {
+      display: none;
+    }
+
+    .opcion label {
+      display: block;
+      text-align: center;
+      padding: 10px 5px;
+      border: 1px solid #EAE5D9;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 12px;
+      background: #ffffff;
+      color: #726650;
+      transition: .2s;
+    }
+
+    .opcion input:checked + label {
+      background: #8B0000;
+      border-color: #8B0000;
+      color: #ffffff;
+      font-weight: 600;
+      outline: none;
+    }
+
+    .boton-confirmar {
+      width: 100%;
+      border: 0;
+      border-radius: 30px;
+      padding: 16px;
+      background: linear-gradient(135deg, #800000 0%, #4a0000 100%);
+      color: white;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 15px;
+      box-shadow: 0 4px 15px rgba(74, 0, 0, 0.25);
+      transition: all 0.2s ease;
+      outline: none;
+    }
+
+    .boton-confirmar:hover {
+      background: #4a0000;
+    }
+
+    .boton-confirmar:disabled {
+      opacity: .6;
+      cursor: not-allowed;
+    }
+
+    .mensaje {
+      display: none;
+      text-align: center;
+      margin-top: 10px;
+      padding: 15px;
+      border-radius: 12px;
+      background: rgba(253, 251, 247, 0.9);
+      border: 1px solid #EAE5D9;
+      font-size: 13.5px;
+      line-height: 1.5;
+      color: #554C3A;
+    }
+
+    .mensaje.visible {
+      display: block;
+    }
+
+    /* PASES DE ENTRADA EN TONO ROJO */
+    .lista-pases {
+      display: none;
+      margin-top: 25px;
+    }
+
+    .lista-pases.visible {
+      display: block;
+    }
+
+    .tarjeta-pase-individual {
+      margin-bottom: 30px;
+    }
+
+    .contenido-pase {
+      position: relative;
+      width: 100%;
+      padding: 35px 20px 25px;
+      text-align: center;
+      border: 2px solid #c9a24e;
+      border-radius: 20px;
+      background: linear-gradient(145deg, #fffdf9 0%, #faf0e8 50%, #f3e3da 100%);
+      box-shadow: 0 10px 30px rgba(128, 0, 0, .12);
+    }
+
+    .pase-adorno {
+      font-size: 20px;
+      color: #c9a24e;
+      margin-bottom: 5px;
+    }
+
+    .pase-titulo {
+      font-family: 'Cormorant Garamond', serif;
+      color: #8B0000;
+      font-size: 30px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin: 0 0 10px;
+    }
+
+    .pase-linea {
+      width: 80px;
+      height: 1px;
+      background: #c9a24e;
+      margin: 0 auto 20px;
+    }
+
+    .pase-nombre {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 26px;
+      font-weight: 600;
+      color: #5a2525;
+      margin: 10px 0 5px;
+    }
+
+    .pase-indicador {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 6px 16px;
+      background: #8B0000;
+      color: #ffffff;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+
+    .pase-intransferible {
+      margin-top: 20px;
+      padding-top: 12px;
+      border-top: 1px dashed #d8c0ad;
+      font-size: 11px;
+      color: #8c5d5d;
+      font-style: italic;
+      line-height: 1.4;
+    }
+
+    .boton-descargar {
+      width: 100%;
+      border: none;
+      border-radius: 30px;
+      padding: 12px 20px;
+      margin-top: 12px;
+      background: linear-gradient(135deg, #800000 0%, #4a0000 100%);
+      color: #fffaf2;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      outline: none;
+      box-shadow: 0 4px 12px rgba(74, 0, 0, 0.25);
+      transition: background 0.3s;
+    }
+
+    .boton-descargar:hover {
+      background: #4a0000;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="mobile-screen" id="mobileScreen">
+
+    <audio id="bg-music" src="cancion.mp3" loop preload="auto"></audio>
+
+    <!-- BOTÓN REPRODUCTOR DE MÚSICA -->
+    <button class="music-btn" id="musicBtn" onclick="toggleMusic()" aria-label="Controlar música">
+        <svg id="musicIcon" viewBox="0 0 24 24">
+            <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+        </svg>
+    </button>
+
+    <div class="invitation-wrapper" id="invitation">
+
+        <!-- 1. PORTADA CON ZOOM SUAVE Y FONDO BLANCO PURO -->
+        <div class="image-section portada-section" id="portadaSection">
+            <img src="portada.png" alt="Portada">
+        </div>
+
+        <!-- 2. PAPÁS (PNG) - ANIMACIÓN ELEGANTE DE ENTRADA Y FLOTADO -->
+        <div class="image-section papas-section" id="papasSection">
+            <img src="papas.png" alt="Nuestros Padres">
+        </div>
+
+        <!-- 3. FECHA (PNG) -->
+        <div class="image-section fecha-animada reveal-section">
+            <img src="fecha.png" alt="Fecha y Hora del Evento">
+        </div>
+
+        <!-- 4. CONTADOR CON NÚMEROS EN ROJO QUEMADO -->
+        <div class="countdown-section fade-up reveal-section">
+            <div class="countdown-flex">
+                <div class="countdown-item">
+                    <span id="days" class="countdown-number">00</span>
+                    <span class="countdown-label">Días</span>
+                </div>
+                <div class="countdown-divider">•</div>
+                <div class="countdown-item">
+                    <span id="hours" class="countdown-number">00</span>
+                    <span class="countdown-label">Horas</span>
+                </div>
+                <div class="countdown-divider">•</div>
+                <div class="countdown-item">
+                    <span id="minutes" class="countdown-number">00</span>
+                    <span class="countdown-label">Minutos</span>
+                </div>
+                <div class="countdown-divider">•</div>
+                <div class="countdown-item">
+                    <span id="seconds" class="countdown-number">00</span>
+                    <span class="countdown-label">Segundos</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. FOTO DE NOVIOS (JPG) -->
+        <div class="image-section scale-up reveal-section">
+            <img src="novios.jpg" alt="Los Novios">
+        </div>
+
+        <!-- 6. CEREMONIA CON BOTONES CON TIPOGRAFÍA CINZEL -->
+        <div class="image-section scale-up reveal-section ceremonia-container">
+            <img src="ceremonia.png" alt="Ceremonia y Recepción">
+            
+            <!-- Botón Misa: Our Lady Mother of the Church -->
+            <a href="https://www.google.com/maps/place/Our+Lady+Mother+of+the+Church/@39.8269485,-104.9108895,644m/data=!3m2!1e3!4b1!4m6!3m5!1s0x876c7a75ccdd1691:0xcaa1f1f5ebffd379!8m2!3d39.8269485!4d-104.9108895!16s%2Fg%2F1tlmntr3?entry=ttu&g_ep=EgoyMDI2MTAwNC4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" class="map-btn btn-ceremonia">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                </svg>
+                Ver ubicación
+            </a>
+
+            <!-- Botón Recepción: Salón Venecia inc -->
+            <a href="https://www.google.com/maps/place/Salon+Venecia+inc/@39.8809952,-105.0940809,644m/data=!3m3!1e3!4b1!5s0x876b89637d82f99f:0xb98195085472d020!4m6!3m5!1s0x876c76fa1d434683:0xbeae19d5af3c42fb!8m2!3d39.8809952!4d-105.0940809!16s%2Fg%2F12mkz9q0k?entry=ttu&g_ep=EgoyMDI2MTAwNC4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" class="map-btn btn-recepcion">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                </svg>
+                Ver ubicación
+            </a>
+        </div>
+
+        <!-- 7. VESTIMENTA (PNG) -->
+        <div class="image-section slide-left reveal-section">
+            <img src="vestimenta.png" alt="Vestimenta">
+        </div>
+
+        <!-- 8. GALERÍA (PNG) -->
+        <div class="image-section scale-up reveal-section">
+            <img src="galeria.png" alt="Galería">
+        </div>
+
+        <!-- FOTOS DE GALERÍA -->
+        <div class="image-section scale-up reveal-section">
+            <img src="https://i.imgur.com/fBOB4tc.jpeg" alt="Fotografía 1">
+        </div>
+        <div class="image-section scale-up reveal-section">
+            <img src="https://i.imgur.com/mrvuPj4.jpeg" alt="Fotografía 2">
+        </div>
+        <div class="image-section scale-up reveal-section">
+            <img src="https://i.imgur.com/rFre1i6.jpeg" alt="Fotografía 3">
+        </div>
+        <div class="image-section scale-up reveal-section">
+            <img src="https://i.imgur.com/dln4s9E.jpeg" alt="Fotografía 4">
+        </div>
+        <div class="image-section scale-up reveal-section">
+            <img src="https://i.imgur.com/U0QdbQb.jpeg" alt="Fotografía 5">
+        </div>
+        <div class="image-section scale-up reveal-section">
+            <img src="https://i.imgur.com/k9qztcZ.jpeg" alt="Fotografía 6">
+        </div>
+
+        <!-- ENCABEZADO IMAGEN ITINERARIO -->
+        <div class="image-section scale-up reveal-section">
+            <img src="itinerario.png" alt="Itinerario">
+        </div>
+
+        <!-- ITINERARIO DEL EVENTO CON ICONOS -->
+        <div class="itinerario-section fade-up reveal-section">
+          <div class="itinerario-wrapper-inner">
+            <div class="itinerario">
+
+              <!-- 1. MISA -->
+              <div class="evento">
+                <div class="lado-izq">
+                  <div class="icono">
+                    <svg viewBox="0 0 24 24" fill="#8C6D46">
+                      <path d="M11 2h2v3h3v2h-3v3h-2V7H8V5h3V2zm-2 9h6l5 3v8H4v-8l5-3zm3 2a2 2 0 0 0-2 2v5h4v-5a2 2 0 0 0-2-2z"/>
+                    </svg>
+                  </div>
+                </div>
+                <div class="punto"></div>
+                <div class="lado-der">
+                  <span class="hora">1:00 p. m.</span>
+                  <strong class="titulo-evento">Misa</strong>
+                </div>
+              </div>
+
+              <!-- 2. RECEPCIÓN -->
+              <div class="evento">
+                <div class="lado-izq">
+                  <div class="icono">
+                    <img src="https://i.imgur.com/5iX5qn7.png" alt="Recepción">
+                  </div>
+                </div>
+                <div class="punto"></div>
+                <div class="lado-der">
+                  <span class="hora">5:00 p. m.</span>
+                  <strong class="titulo-evento">Recepción</strong>
+                </div>
+              </div>
+
+              <!-- 3. CENA -->
+              <div class="evento">
+                <div class="lado-izq">
+                  <div class="icono">
+                    <img src="https://i.imgur.com/BzUQM62.png" alt="Cena">
+                  </div>
+                </div>
+                <div class="punto"></div>
+                <div class="lado-der">
+                  <span class="hora">6:00 - 8:00 p. m.</span>
+                  <strong class="titulo-evento">Cena</strong>
+                </div>
+              </div>
+
+              <!-- 4. PRESENTACIÓN -->
+              <div class="evento">
+                <div class="lado-izq">
+                  <div class="icono">
+                    <img src="https://i.imgur.com/Tgt4qs6.png" alt="Presentación">
+                  </div>
+                </div>
+                <div class="punto"></div>
+                <div class="lado-der">
+                  <span class="hora">8:00 p. m.</span>
+                  <strong class="titulo-evento">Presentación</strong>
+                </div>
+              </div>
+
+              <!-- 5. VALS -->
+              <div class="evento">
+                <div class="lado-izq">
+                  <div class="icono">
+                    <img src="https://i.imgur.com/s0xZn2N.png" alt="Vals">
+                  </div>
+                </div>
+                <div class="punto"></div>
+                <div class="lado-der">
+                  <span class="hora">8:30 p. m.</span>
+                  <strong class="titulo-evento">Vals</strong>
+                </div>
+              </div>
+
+              <!-- 6. BAILE -->
+              <div class="evento">
+                <div class="lado-izq">
+                  <div class="icono">
+                    <img src="https://i.imgur.com/qb2QFsO.png" alt="Baile">
+                  </div>
+                </div>
+                <div class="punto"></div>
+                <div class="lado-der">
+                  <span class="hora">9:00 p. m.</span>
+                  <strong class="titulo-evento">Baile</strong>
+                </div>
+              </div>
+
+              <!-- 7. FINAL -->
+              <div class="evento">
+                <div class="lado-izq">
+                  <div class="icono">
+                    <img src="https://i.imgur.com/06wV2Qn.png" alt="Final">
+                  </div>
+                </div>
+                <div class="punto"></div>
+                <div class="lado-der">
+                  <span class="hora">1:00 a. m.</span>
+                  <strong class="titulo-evento">Final</strong>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- 9. MESA DE REGALOS (PNG) -->
+        <div class="image-section scale-up reveal-section">
+            <img src="regalo.png" alt="Mesa de Regalos">
+        </div>
+
+        <!-- 10. TÍTULO DE ASISTENCIA (PNG) -->
+        <div class="image-section scale-up reveal-section">
+            <img src="asistencia.png" alt="Confirmación de Asistencia">
+        </div>
+
+        <!-- 11. FORMULARIO RSVP INTEGRADO AL FINAL -->
+        <div class="rsvp-container-wrapper fade-up reveal-section">
+            <div class="tarjeta-asistencia">
+                <div id="formularioCampos">
+                    <div id="contenedorIntegrantes"></div>
+                    <button class="boton-confirmar" id="botonEnviar" onclick="enviarRegistro()">Confirmar respuesta</button>
+                </div>
+
+                <div id="mensaje" class="mensaje"></div>
+                <div id="listaPases" class="lista-pases"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- SOBRE DE BIENVENIDA -->
+    <div class="envelope-container" id="envelope">
+        <div class="envelope-card"></div>
+    </div>
+
+</div>
+
+<script>
+    let isOpen = false;
+    const music = document.getElementById("bg-music");
+    const wrapper = document.getElementById("invitation");
+    const envelope = document.getElementById("envelope");
+    const musicBtn = document.getElementById("musicBtn");
+    const musicIcon = document.getElementById("musicIcon");
+    const portadaSection = document.getElementById("portadaSection");
+    const papasSection = document.getElementById("papasSection");
+    const mobileScreen = document.getElementById("mobileScreen");
+
+    const notePath = '<path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>';
+    const pausePath = '<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>';
+
+    /* MOVIMIENTO PARALLAX */
+    let ticking = false;
+    wrapper.addEventListener('scroll', () => {
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                const scrollTop = wrapper.scrollTop;
+                const maxScroll = wrapper.scrollHeight - wrapper.clientHeight;
+                if (maxScroll > 0) {
+                    const percentage = scrollTop / maxScroll;
+                    const translateY = percentage * -30; 
+                    mobileScreen.style.setProperty('--bg-y', `${translateY}%`);
+                }
+                ticking = false;
+            });
+            ticking = true;
+        }
+    }, { passive: true });
+
+    function openEnvelope() {
+        if (!isOpen) {
+            isOpen = true;
+            wrapper.scrollTop = 0;
+            
+            envelope.classList.add("open");
+            musicBtn.classList.add("visible");
+            
+            portadaSection.classList.add("portada-animada");
+            papasSection.classList.add("papas-animada");
+
+            initScrollAnimations();
+
+            if (music) {
+                var playPromise = music.play();
+                if (playPromise !== undefined) {
+                    playPromise.then(function() {
+                        musicBtn.classList.add("playing");
+                        musicIcon.innerHTML = notePath;
+                    }).catch(function(error) {
+                        console.log("Audio en reproducción manual:", error);
+                        musicBtn.classList.remove("playing");
+                        musicIcon.innerHTML = pausePath;
+                    });
+                }
+            }
+        }
+    }
+
+    envelope.addEventListener('click', openEnvelope);
+
+    function toggleMusic() {
+        if (music.paused) {
+            music.play();
+            musicBtn.classList.add("playing");
+            musicIcon.innerHTML = notePath;
+        } else {
+            music.pause();
+            musicBtn.classList.remove("playing");
+            musicIcon.innerHTML = pausePath;
+        }
+    }
+
+    function initScrollAnimations() {
+        const revealElements = document.querySelectorAll('.reveal-section');
+        
+        if (!('IntersectionObserver' in window)) {
+            revealElements.forEach(el => el.classList.add('visible-section'));
+            return;
+        }
+
+        const observerOptions = {
+            root: wrapper,
+            rootMargin: '0px 0px -20px 0px',
+            threshold: 0.05
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible-section');
+                }
+            });
+        }, observerOptions);
+
+        revealElements.forEach(el => observer.observe(el));
+    }
+
+    /* CUENTA REGRESIVA CONFIGURADA PARA EL 12 DE DICIEMBRE A LAS 1:00 P.M. */
+    function updateCountdown() {
+        const targetDate = new Date("December 12, 2026 13:00:00").getTime();
+        const now = new Date().getTime();
+        const diff = targetDate - now;
+
+        if (diff <= 0) {
+            document.getElementById('days').innerText = "00";
+            document.getElementById('hours').innerText = "00";
+            document.getElementById('minutes').innerText = "00";
+            document.getElementById('seconds').innerText = "00";
+            return;
+        }
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+        document.getElementById('days').innerText = String(days).padStart(2, '0');
+        document.getElementById('hours').innerText = String(hours).padStart(2, '0');
+        document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
+        document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    /* NUEVA IMPLEMENTACIÓN DE GOOGLE APPS SCRIPT Y MANEJO DE PASES */
+    const API_URL = "https://script.google.com/macros/s/AKfycbx-Rf6vfxGz1L76qRYVjT6NWj4NtrnkoZltSiUI6df_AUu6lVynohgB_TwNiJdGUM-c/exec";
+
+    let maxPasesPermitidos = 1; // Ajustado a 1 persona por defecto
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const pasesParam = parseInt(urlParams.get('pases'));
+
+      if (!isNaN(pasesParam) && pasesParam > 0) {
+        maxPasesPermitidos = pasesParam;
+      }
+
+      const contenedor = document.getElementById('contenedorIntegrantes');
+      contenedor.innerHTML = '';
+
+      for (let i = 1; i <= maxPasesPermitidos; i++) {
+        const div = document.createElement('div');
+        div.className = 'tarjeta-integrante';
+        div.innerHTML = `
+          <div class="titulo-integrante">${maxPasesPermitidos === 1 ? 'Asistente' : `Asistente ${i}`}</div>
+          <input type="text" id="nombre_${i}" placeholder="Nombre(s)" autocomplete="off">
+          <input type="text" id="apellidoPaterno_${i}" placeholder="Primer Apellido" autocomplete="off">
+          <input type="text" id="apellidoMaterno_${i}" placeholder="Segundo Apellido" autocomplete="off">
+          <div class="opciones">
+            <div class="opcion">
+              <input type="radio" name="asist_${i}" id="si_${i}" value="Sí" checked>
+              <label for="si_${i}">Sí asistiré</label>
+            </div>
+            <div class="opcion">
+              <input type="radio" name="asist_${i}" id="no_${i}" value="No">
+              <label for="no_${i}">No asistiré</label>
+            </div>
+          </div>
+        `;
+        contenedor.appendChild(div);
+      }
+    });
+
+    function llamarAPI(parametros) {
+      return new Promise((resolve, reject) => {
+        const callback = 'cb_' + Date.now() + '_' + Math.floor(Math.random() * 9999);
+        const script = document.createElement('script');
+        const query = new URLSearchParams({ ...parametros, callback });
+        const tiempo = setTimeout(() => { limpiar(); reject("Tiempo agotado"); }, 12000);
+
+        window[callback] = function(data) {
+          clearTimeout(tiempo);
+          limpiar();
+          resolve(data);
+        };
+
+        function limpiar() {
+          delete window[callback];
+          if (script.parentNode) script.parentNode.removeChild(script);
+        }
+
+        script.onerror = function() {
+          clearTimeout(tiempo);
+          limpiar();
+          reject("Error de conexión");
+        };
+
+        script.src = API_URL + '?' + query.toString();
+        document.body.appendChild(script);
+      });
+    }
+
+    async function enviarRegistro() {
+      const mensaje = document.getElementById('mensaje');
+      const listaPases = document.getElementById('listaPases');
+      const boton = document.getElementById('botonEnviar');
+
+      const listaPersonas = [];
+
+      for (let i = 1; i <= maxPasesPermitidos; i++) {
+        const nombreVal = document.getElementById(`nombre_${i}`).value.trim();
+        const apPaternoVal = document.getElementById(`apellidoPaterno_${i}`).value.trim();
+        const apMaternoVal = document.getElementById(`apellidoMaterno_${i}`).value.trim();
+        const asistVal = document.querySelector(`input[name="asist_${i}"]:checked`).value;
+
+        // Validar que los 3 campos obligatorios estén llenos
+        if (!nombreVal || !apPaternoVal || !apMaternoVal) {
+          mostrarMensaje(`Por favor ingresa Nombre, Primer Apellido y Segundo Apellido.`);
+          return;
+        }
+
+        const nombreCompleto = `${nombreVal} ${apPaternoVal} ${apMaternoVal}`;
+
+        listaPersonas.push({
+          nombre: nombreCompleto,
+          asistencia: asistVal
+        });
+      }
+
+      boton.disabled = true;
+      boton.textContent = 'Enviando...';
+
+      try {
+        await llamarAPI({
+          action: 'registrarIndividuales',
+          personas: JSON.stringify(listaPersonas)
+        });
+
+        document.getElementById('formularioCampos').style.display = 'none';
+
+        const confirmados = listaPersonas.filter(p => p.asistencia === 'Sí');
+
+        if (confirmados.length === 0) {
+          mostrarMensaje('Muchas gracias por responder. Lamentamos que no puedas acompañarnos.');
+          return;
+        }
+
+        mostrarMensaje('¡Gracias por confirmar! A continuación tienes tu pase de entrada:');
+
+        listaPases.className = 'lista-pases visible';
+        listaPases.innerHTML = '';
+
+        confirmados.forEach((persona, index) => {
+          const divPase = document.createElement('div');
+          divPase.className = 'tarjeta-pase-individual';
+          divPase.innerHTML = `
+            <div id="contenidoPase_${index}" class="contenido-pase">
+              <div class="pase-adorno">✦</div>
+              <div class="pase-titulo">Pase de Entrada</div>
+              <div class="pase-linea"></div>
+              <div class="pase-nombre">${escapar(persona.nombre)}</div>
+              <div class="pase-indicador">ACCESO INDIVIDUAL PERSONAL</div>
+              <div class="pase-intransferible">
+                Este pase es intransferible, únicamente está destinado para uso de la persona invitada al evento.
+              </div>
+            </div>
+            <button type="button" class="boton-descargar" onclick="descargarPaseIndividual(${index}, '${escapar(persona.nombre)}', event)">
+              Descargar Pase de ${escapar(persona.nombre)}
+            </button>
+          `;
+          listaPases.appendChild(divPase);
+        });
+
+      } catch (err) {
+        console.error(err);
+        mostrarMensaje('Hubo un error al guardar la información. Inténtalo de nuevo.');
+        boton.disabled = false;
+        boton.textContent = 'Confirmar respuesta';
+      }
+    }
+
+    function mostrarMensaje(texto) {
+      const mensaje = document.getElementById('mensaje');
+      mensaje.className = 'mensaje visible';
+      mensaje.textContent = texto;
+    }
+
+    async function descargarPaseIndividual(index, nombrePersona, ev) {
+      const contenido = document.getElementById('contenidoPase_' + index);
+      if (!contenido) return;
+
+      const btn = ev.target;
+      const textoOriginal = btn.textContent;
+      btn.disabled = true;
+      btn.textContent = 'Generando imagen...';
+
+      try {
+        const canvas = await html2canvas(contenido, {
+          scale: 3,
+          backgroundColor: '#ffffff',
+          useCORS: true,
+          logging: false
+        });
+
+        canvas.toBlob(function(blob) {
+          if (!blob) throw new Error('Error al generar la imagen');
+          const url = URL.createObjectURL(blob);
+          const enlace = document.createElement('a');
+          enlace.href = url;
+          enlace.download = 'Pase-' + nombrePersona.replace(/[^a-zA-Z0-9]/g, '-') + '.png';
+          document.body.appendChild(enlace);
+          enlace.click();
+          document.body.removeChild(enlace);
+          setTimeout(() => URL.revokeObjectURL(url), 1000);
+        }, 'image/png');
+
+      } catch (error) {
+        alert('No se pudo descargar automáticamente. Puedes tomarle captura de pantalla.');
+      } finally {
+        btn.disabled = false;
+        btn.textContent = textoOriginal;
+      }
+    }
+
+    function escapar(texto) {
+      return String(texto).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/'/g, '&#39;');
+    }
+</script>
+
+</body>
+</html>
