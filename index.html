@@ -498,30 +498,28 @@
       pointer-events: none;
     }
 
-    /* ESTILOS DE LA FORMULARIO RSVP INTEGRADO (EN ROJO) */
-    .rsvp-container-wrapper {
+    /* ESTILOS DEL FORMULARIO RSVP DE INDEX 1 */
+    .rsvp-container {
       width: 100%;
-      padding: 10px 20px 30px;
-      display: flex;
-      justify-content: center;
+      padding: 10px 20px 40px 20px;
+      background: transparent;
+      font-family: 'Montserrat', sans-serif;
+      color: #5a2525;
       line-height: normal;
     }
 
-    .tarjeta-asistencia {
-      width: 100%;
-      background: transparent;
-      border: 1px solid rgba(234, 229, 217, 0.8);
-      border-radius: 25px;
-      padding: 30px 22px;
+    .rsvp-tarjeta {
+      background: rgba(255, 255, 255, 0.85);
       backdrop-filter: blur(5px);
-      box-shadow: 0 10px 30px rgba(74, 0, 0, 0.08);
-      font-family: 'Montserrat', sans-serif;
-      color: #554C3A;
+      border: 1px solid rgba(201, 162, 78, 0.6);
+      border-radius: 20px;
+      padding: 25px 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.05);
     }
 
     .tarjeta-integrante {
-      background: rgba(253, 251, 247, 0.85);
-      border: 1px solid #EAE5D9;
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid rgba(216, 192, 173, 0.7);
       border-radius: 15px;
       padding: 16px;
       margin-bottom: 15px;
@@ -529,161 +527,124 @@
 
     .tarjeta-integrante .titulo-integrante {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 18px;
-      color: #8B0000;
+      font-size: 20px;
+      color: #8C6D46;
       font-weight: 600;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
+      text-align: center;
     }
 
-    .tarjeta-asistencia input[type="text"] {
+    .rsvp-container input[type="text"] {
       width: 100%;
       padding: 12px 14px;
       border-radius: 10px;
-      border: 1px solid #EAE5D9;
+      border: 1px solid #d8c0ad;
       background: #ffffff;
       outline: none;
       font-family: 'Montserrat', sans-serif;
-      color: #554C3A;
+      color: #5a2525;
       font-size: 14px;
       margin-bottom: 12px;
-      transition: all 0.3s ease;
     }
 
-    .tarjeta-asistencia input[type="text"]:focus {
-      border-color: #8B0000;
-      box-shadow: 0 0 6px rgba(139, 0, 0, 0.2);
+    .rsvp-container input[type="text"]:focus {
+      border-color: #8C6D46;
+      box-shadow: 0 0 6px rgba(140, 109, 70, 0.3);
     }
 
-    .opciones {
-      display: flex;
-      gap: 10px;
-    }
-
-    .opcion {
-      flex: 1;
-    }
-
-    .opcion input {
-      display: none;
-    }
-
+    .opciones { display: flex; gap: 10px; }
+    .opcion { flex: 1; }
+    .opcion input { display: none; }
     .opcion label {
       display: block;
       text-align: center;
       padding: 10px 5px;
-      border: 1px solid #EAE5D9;
+      border: 1px solid #d8c0ad;
       border-radius: 10px;
       cursor: pointer;
       font-size: 12px;
       background: #ffffff;
-      color: #726650;
       transition: .2s;
     }
 
     .opcion input:checked + label {
-      background: #8B0000;
-      border-color: #8B0000;
+      background: #8C6D46;
+      border-color: #8C6D46;
       color: #ffffff;
       font-weight: 600;
       outline: none;
     }
 
-    .boton-confirmar {
+    .boton-rsvp {
       width: 100%;
       border: 0;
       border-radius: 30px;
       padding: 16px;
-      background: linear-gradient(135deg, #800000 0%, #4a0000 100%);
+      background: linear-gradient(135deg, #A68B5B 0%, #8C6D46 100%);
       color: white;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 14px;
+      font-family: 'Cinzel', serif;
+      font-size: 12px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
       font-weight: 600;
       cursor: pointer;
       margin-top: 15px;
-      box-shadow: 0 4px 15px rgba(74, 0, 0, 0.25);
-      transition: all 0.2s ease;
+      box-shadow: 0 4px 12px rgba(140, 109, 70, 0.3);
       outline: none;
     }
 
-    .boton-confirmar:hover {
-      background: #4a0000;
-    }
+    .boton-rsvp:hover { opacity: 0.95; }
+    .boton-rsvp:disabled { opacity: .6; cursor: not-allowed; }
 
-    .boton-confirmar:disabled {
-      opacity: .6;
-      cursor: not-allowed;
-    }
-
-    .mensaje {
+    .mensaje-rsvp {
       display: none;
       text-align: center;
       margin-top: 10px;
       padding: 15px;
       border-radius: 12px;
-      background: rgba(253, 251, 247, 0.9);
-      border: 1px solid #EAE5D9;
+      background: #ffffff;
+      border: 1px solid #d9bda8;
       font-size: 13.5px;
       line-height: 1.5;
-      color: #554C3A;
     }
 
-    .mensaje.visible {
-      display: block;
-    }
+    .mensaje-rsvp.visible { display: block; }
 
-    /* PASES DE ENTRADA EN TONO ROJO */
-    .lista-pases {
-      display: none;
-      margin-top: 25px;
-    }
+    .lista-pases { display: none; margin-top: 25px; }
+    .lista-pases.visible { display: block; }
 
-    .lista-pases.visible {
-      display: block;
-    }
-
-    .tarjeta-pase-individual {
-      margin-bottom: 30px;
-    }
+    .tarjeta-pase-individual { margin-bottom: 30px; }
 
     .contenido-pase {
       position: relative;
       width: 100%;
       padding: 35px 20px 25px;
       text-align: center;
-      border: 2px solid #c9a24e;
+      border: 2px solid #A68B5B;
       border-radius: 20px;
-      background: linear-gradient(145deg, #fffdf9 0%, #faf0e8 50%, #f3e3da 100%);
-      box-shadow: 0 10px 30px rgba(128, 0, 0, .12);
+      background: #ffffff;
+      box-shadow: 0 10px 30px rgba(140, 109, 70, 0.15);
     }
 
-    .pase-adorno {
-      font-size: 20px;
-      color: #c9a24e;
-      margin-bottom: 5px;
-    }
+    .pase-adorno { font-size: 20px; color: #A68B5B; margin-bottom: 5px; }
 
     .pase-titulo {
       font-family: 'Cormorant Garamond', serif;
-      color: #8B0000;
-      font-size: 30px;
+      color: #8C6D46;
+      font-size: 28px;
       font-weight: 700;
       letter-spacing: 2px;
       text-transform: uppercase;
       margin: 0 0 10px;
     }
 
-    .pase-linea {
-      width: 80px;
-      height: 1px;
-      background: #c9a24e;
-      margin: 0 auto 20px;
-    }
+    .pase-linea { width: 80px; height: 1px; background: #A68B5B; margin: 0 auto 20px; }
 
     .pase-nombre {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 26px;
+      font-size: 24px;
       font-weight: 600;
-      color: #5a2525;
+      color: #1A1A1A;
       margin: 10px 0 5px;
     }
 
@@ -691,7 +652,7 @@
       display: inline-block;
       margin-top: 10px;
       padding: 6px 16px;
-      background: #8B0000;
+      background: #8C6D46;
       color: #ffffff;
       border-radius: 20px;
       font-size: 11px;
@@ -704,7 +665,7 @@
       padding-top: 12px;
       border-top: 1px dashed #d8c0ad;
       font-size: 11px;
-      color: #8c5d5d;
+      color: #666;
       font-style: italic;
       line-height: 1.4;
     }
@@ -715,19 +676,58 @@
       border-radius: 30px;
       padding: 12px 20px;
       margin-top: 12px;
-      background: linear-gradient(135deg, #800000 0%, #4a0000 100%);
+      background: #8C6D46;
       color: #fffaf2;
       font-family: 'Montserrat', sans-serif;
       font-size: 13px;
       font-weight: 600;
       cursor: pointer;
       outline: none;
-      box-shadow: 0 4px 12px rgba(74, 0, 0, 0.25);
-      transition: background 0.3s;
     }
 
-    .boton-descargar:hover {
-      background: #4a0000;
+    .boton-descargar:hover { background: #735735; }
+
+    /* SECCIÓN RECUPERAR PASE DE INDEX 1 */
+    .recuperar-container {
+      margin-top: 35px;
+      padding-top: 25px;
+      border-top: 1px dashed #c9a24e;
+      text-align: center;
+    }
+
+    .recuperar-titulo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: #8C6D46;
+      margin-bottom: 6px;
+    }
+
+    .recuperar-subtitulo {
+      font-size: 12.5px;
+      color: #666;
+      margin-bottom: 15px;
+      line-height: 1.4;
+    }
+
+    .btn-secundario {
+      background: transparent;
+      border: 1px solid #8C6D46;
+      color: #8C6D46;
+      font-family: 'Cinzel', serif;
+      font-size: 11px;
+      letter-spacing: 1px;
+      padding: 12px 20px;
+      border-radius: 25px;
+      cursor: pointer;
+      width: 100%;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .btn-secundario:hover {
+      background: #8C6D46;
+      color: #ffffff;
     }
   </style>
 </head>
@@ -967,16 +967,31 @@
             <img src="asistencia.png" alt="Confirmación de Asistencia">
         </div>
 
-        <!-- 11. FORMULARIO RSVP INTEGRADO AL FINAL -->
-        <div class="rsvp-container-wrapper fade-up reveal-section">
-            <div class="tarjeta-asistencia">
+        <!-- 11. FORMULARIO RSVP Y RECUPERACIÓN DE PASES (DE INDEX 1) -->
+        <div class="rsvp-container fade-up reveal-section">
+            <div class="rsvp-tarjeta">
+                
+                <!-- CONFIRMACIÓN -->
                 <div id="formularioCampos">
                     <div id="contenedorIntegrantes"></div>
-                    <button class="boton-confirmar" id="botonEnviar" onclick="enviarRegistro()">Confirmar respuesta</button>
+                    <button class="boton-rsvp" id="botonEnviar" onclick="enviarRegistro()">Confirmar respuesta</button>
                 </div>
 
-                <div id="mensaje" class="mensaje"></div>
+                <div id="mensaje" class="mensaje-rsvp"></div>
                 <div id="listaPases" class="lista-pases"></div>
+
+                <!-- SECCIÓN: RECUPERAR PASE PERDIDO -->
+                <div class="recuperar-container">
+                    <div class="recuperar-titulo">¿Olvidaste descargar tu pase o lo borraste?</div>
+                    <div class="recuperar-subtitulo">Escribe tu nombre para volver a recuperar tu pase confirmado:</div>
+                    
+                    <input type="text" id="busquedaNombre" placeholder="Tu nombre o apellidos..." autocomplete="off">
+                    <button class="btn-secundario" id="btnBuscarPase" onclick="buscarPaseConfirmado()">Recuperar mi pase</button>
+                    
+                    <div id="mensajeBusqueda" class="mensaje-rsvp" style="margin-top: 15px;"></div>
+                    <div id="listaPasesBuscados" class="lista-pases"></div>
+                </div>
+
             </div>
         </div>
 
@@ -1117,10 +1132,9 @@
     setInterval(updateCountdown, 1000);
     updateCountdown();
 
-    /* NUEVA IMPLEMENTACIÓN DE GOOGLE APPS SCRIPT Y MANEJO DE PASES */
-    const API_URL = "https://script.google.com/macros/s/AKfycbx-Rf6vfxGz1L76qRYVjT6NWj4NtrnkoZltSiUI6df_AUu6lVynohgB_TwNiJdGUM-c/exec";
-
-    let maxPasesPermitidos = 1; // Ajustado a 1 persona por defecto
+    /* RSVP Y LÓGICA DE ASISTENCIA CON EL EXEC DEL INDEX 2 */
+    const API_URL = "https://script.google.com/macros/s/AKfycbwSQDaViNy2j7nwMulf9wEKfKNcWZhUaQdA0lQ5RshzhfMNSXtg6I0xCX4MZqpZ7QCI/exec";
+    let maxPasesPermitidos = 1;
 
     document.addEventListener('DOMContentLoaded', () => {
       const urlParams = new URLSearchParams(window.location.search);
@@ -1131,28 +1145,29 @@
       }
 
       const contenedor = document.getElementById('contenedorIntegrantes');
-      contenedor.innerHTML = '';
-
-      for (let i = 1; i <= maxPasesPermitidos; i++) {
-        const div = document.createElement('div');
-        div.className = 'tarjeta-integrante';
-        div.innerHTML = `
-          <div class="titulo-integrante">${maxPasesPermitidos === 1 ? 'Asistente' : `Asistente ${i}`}</div>
-          <input type="text" id="nombre_${i}" placeholder="Nombre(s)" autocomplete="off">
-          <input type="text" id="apellidoPaterno_${i}" placeholder="Primer Apellido" autocomplete="off">
-          <input type="text" id="apellidoMaterno_${i}" placeholder="Segundo Apellido" autocomplete="off">
-          <div class="opciones">
-            <div class="opcion">
-              <input type="radio" name="asist_${i}" id="si_${i}" value="Sí" checked>
-              <label for="si_${i}">Sí asistiré</label>
+      if (contenedor) {
+        contenedor.innerHTML = '';
+        for (let i = 1; i <= maxPasesPermitidos; i++) {
+          const div = document.createElement('div');
+          div.className = 'tarjeta-integrante';
+          div.innerHTML = `
+            ${maxPasesPermitidos > 1 ? `<div class="titulo-integrante">Asistente ${i}</div>` : ''}
+            <input type="text" id="nombre_${i}" placeholder="Nombre(s)" autocomplete="off">
+            <input type="text" id="apellidoPaterno_${i}" placeholder="Primer Apellido" autocomplete="off">
+            <input type="text" id="apellidoMaterno_${i}" placeholder="Segundo Apellido" autocomplete="off">
+            <div class="opciones">
+              <div class="opcion">
+                <input type="radio" name="asist_${i}" id="si_${i}" value="Sí" checked>
+                <label for="si_${i}">Sí asistiré</label>
+              </div>
+              <div class="opcion">
+                <input type="radio" name="asist_${i}" id="no_${i}" value="No">
+                <label for="no_${i}">No asistiré</label>
+              </div>
             </div>
-            <div class="opcion">
-              <input type="radio" name="asist_${i}" id="no_${i}" value="No">
-              <label for="no_${i}">No asistiré</label>
-            </div>
-          </div>
-        `;
-        contenedor.appendChild(div);
+          `;
+          contenedor.appendChild(div);
+        }
       }
     });
 
@@ -1198,7 +1213,6 @@
         const apMaternoVal = document.getElementById(`apellidoMaterno_${i}`).value.trim();
         const asistVal = document.querySelector(`input[name="asist_${i}"]:checked`).value;
 
-        // Validar que los 3 campos obligatorios estén llenos
         if (!nombreVal || !apPaternoVal || !apMaternoVal) {
           mostrarMensaje(`Por favor ingresa Nombre, Primer Apellido y Segundo Apellido.`);
           return;
@@ -1236,24 +1250,7 @@
         listaPases.innerHTML = '';
 
         confirmados.forEach((persona, index) => {
-          const divPase = document.createElement('div');
-          divPase.className = 'tarjeta-pase-individual';
-          divPase.innerHTML = `
-            <div id="contenidoPase_${index}" class="contenido-pase">
-              <div class="pase-adorno">✦</div>
-              <div class="pase-titulo">Pase de Entrada</div>
-              <div class="pase-linea"></div>
-              <div class="pase-nombre">${escapar(persona.nombre)}</div>
-              <div class="pase-indicador">ACCESO INDIVIDUAL PERSONAL</div>
-              <div class="pase-intransferible">
-                Este pase es intransferible, únicamente está destinado para uso de la persona invitada al evento.
-              </div>
-            </div>
-            <button type="button" class="boton-descargar" onclick="descargarPaseIndividual(${index}, '${escapar(persona.nombre)}', event)">
-              Descargar Pase de ${escapar(persona.nombre)}
-            </button>
-          `;
-          listaPases.appendChild(divPase);
+          renderizarTarjetaPase(listaPases, index, persona.nombre, 'conf');
         });
 
       } catch (err) {
@@ -1264,14 +1261,87 @@
       }
     }
 
+    /* BUSCAR Y RECUPERAR PASE */
+    async function buscarPaseConfirmado() {
+      const input = document.getElementById('busquedaNombre');
+      const texto = input.value.trim();
+      const mensaje = document.getElementById('mensajeBusqueda');
+      const listaBuscados = document.getElementById('listaPasesBuscados');
+      const btn = document.getElementById('btnBuscarPase');
+
+      if (!texto) {
+        mensaje.className = 'mensaje-rsvp visible';
+        mensaje.textContent = 'Por favor escribe tu nombre para buscar tu pase.';
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = 'Buscando...';
+      mensaje.className = 'mensaje-rsvp';
+      listaBuscados.innerHTML = '';
+      listaBuscados.className = 'lista-pases';
+
+      try {
+        const respuesta = await llamarAPI({
+          action: 'buscarPases',
+          query: texto
+        });
+
+        if (respuesta && respuesta.status === 'success' && respuesta.resultados && respuesta.resultados.length > 0) {
+          mensaje.className = 'mensaje-rsvp visible';
+          mensaje.textContent = `¡Encontramos ${respuesta.resultados.length} pase(s) confirmado(s)!`;
+
+          listaBuscados.className = 'lista-pases visible';
+          respuesta.resultados.forEach((persona, index) => {
+            renderizarTarjetaPase(listaBuscados, index, persona.nombre, 'recup');
+          });
+
+        } else {
+          mensaje.className = 'mensaje-rsvp visible';
+          mensaje.textContent = 'No encontramos pases confirmados con ese nombre. Verifica que esté escrito como lo registraste o confirma tu asistencia arriba si aún no lo haces.';
+        }
+
+      } catch (err) {
+        console.error(err);
+        mensaje.className = 'mensaje-rsvp visible';
+        mensaje.textContent = 'Ocurrió un error al consultar tu pase. Por favor intenta de nuevo.';
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Recuperar mi pase';
+      }
+    }
+
+    /* RENDERIZADOR AUXILIAR DE PASES DE INDEX 1 */
+    function renderizarTarjetaPase(contenedorHTML, index, nombrePersona, prefijo) {
+      const idContenido = `contenidoPase_${prefijo}_${index}`;
+      const divPase = document.createElement('div');
+      divPase.className = 'tarjeta-pase-individual';
+      divPase.innerHTML = `
+        <div id="${idContenido}" class="contenido-pase">
+          <div class="pase-adorno">✦</div>
+          <div class="pase-titulo">Pase de Entrada</div>
+          <div class="pase-linea"></div>
+          <div class="pase-nombre">${escapar(nombrePersona)}</div>
+          <div class="pase-indicador">ACCESO INDIVIDUAL PERSONAL</div>
+          <div class="pase-intransferible">
+            Este pase es intransferible, únicamente está destinado para uso de la persona invitada al evento.
+          </div>
+        </div>
+        <button type="button" class="boton-descargar" onclick="descargarPaseIndividual('${idContenido}', '${escapar(nombrePersona)}', event)">
+          Descargar Pase de ${escapar(nombrePersona)}
+        </button>
+      `;
+      contenedorHTML.appendChild(divPase);
+    }
+
     function mostrarMensaje(texto) {
       const mensaje = document.getElementById('mensaje');
-      mensaje.className = 'mensaje visible';
+      mensaje.className = 'mensaje-rsvp visible';
       mensaje.textContent = texto;
     }
 
-    async function descargarPaseIndividual(index, nombrePersona, ev) {
-      const contenido = document.getElementById('contenidoPase_' + index);
+    async function descargarPaseIndividual(idElemento, nombrePersona, ev) {
+      const contenido = document.getElementById(idElemento);
       if (!contenido) return;
 
       const btn = ev.target;
