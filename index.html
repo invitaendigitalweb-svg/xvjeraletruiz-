@@ -93,20 +93,20 @@
       height: 0;
     }
 
-    /* BOTÓN FLOTANTE DE MÚSICA */
+    /* BOTÓN FLOTANTE DE MÚSICA EN ROJO */
     .music-btn {
       position: absolute;
       bottom: 25px;
       right: 20px;
       width: 42px;
       height: 42px;
-      background: linear-gradient(135deg, #A68B5B 0%, #8C6D46 100%);
+      background: linear-gradient(135deg, #A30000 0%, #600000 100%);
       border: 1px solid rgba(255, 255, 255, 0.9);
       border-radius: 50%;
       display: flex;
       justify-content: center;
       align-items: center;
-      box-shadow: 0 4px 12px rgba(140, 109, 70, 0.4);
+      box-shadow: 0 4px 12px rgba(128, 0, 0, 0.4);
       cursor: pointer;
       z-index: 9;
       opacity: 0;
@@ -340,7 +340,7 @@
 
     .countdown-label {
       font-size: 15px;
-      color: #8C6D46;
+      color: #8B0000;
       font-weight: 600;
       font-style: italic;
       font-family: 'Cormorant Garamond', serif;
@@ -348,12 +348,12 @@
 
     .countdown-divider {
       font-size: 18px;
-      color: #A68B5B;
+      color: #8B0000;
       margin-top: -20px;
       user-select: none;
     }
 
-    /* ESTILOS DEL ITINERARIO CON ICONOS */
+    /* ESTILOS DEL ITINERARIO CON ICONOS EN ROJO */
     .itinerario-section {
       width: 100%;
       padding: 35px 22px;
@@ -381,7 +381,7 @@
       bottom: 15px;
       left: 75px;
       width: 2px;
-      background: linear-gradient(180deg, #A68B5B 0%, #8C6D46 100%);
+      background: linear-gradient(180deg, #A30000 0%, #600000 100%);
       z-index: 1;
     }
 
@@ -405,11 +405,11 @@
       height: 45px;
       border-radius: 50%;
       background: #ffffff;
-      border: 1px solid #A68B5B;
+      border: 1px solid #8B0000;
       display: flex;
       justify-content: center;
       align-items: center;
-      box-shadow: 0 4px 10px rgba(140, 109, 70, 0.15);
+      box-shadow: 0 4px 10px rgba(139, 0, 0, 0.15);
       padding: 8px;
     }
 
@@ -423,12 +423,12 @@
     .punto {
       width: 12px;
       height: 12px;
-      background: #8C6D46;
+      background: #8B0000;
       border: 2px solid #ffffff;
       border-radius: 50%;
       margin: 0 10px;
       flex-shrink: 0;
-      box-shadow: 0 0 0 2px #A68B5B;
+      box-shadow: 0 0 0 2px #A30000;
     }
 
     .lado-der {
@@ -442,7 +442,7 @@
       font-family: 'Cinzel', serif;
       font-size: 15px;
       font-weight: 700;
-      color: #8C6D46;
+      color: #8B0000;
       line-height: 1.2;
       letter-spacing: 0.5px;
     }
@@ -498,28 +498,28 @@
       pointer-events: none;
     }
 
-    /* ESTILOS DEL FORMULARIO RSVP DE INDEX 1 */
+    /* ESTILOS DEL FORMULARIO RSVP ADAPTADOS EN ROJO */
     .rsvp-container {
       width: 100%;
       padding: 10px 20px 40px 20px;
       background: transparent;
       font-family: 'Montserrat', sans-serif;
-      color: #5a2525;
+      color: #4a0000;
       line-height: normal;
     }
 
     .rsvp-tarjeta {
-      background: rgba(255, 255, 255, 0.85);
+      background: rgba(255, 255, 255, 0.9);
       backdrop-filter: blur(5px);
-      border: 1px solid rgba(201, 162, 78, 0.6);
+      border: 1px solid rgba(139, 0, 0, 0.4);
       border-radius: 20px;
       padding: 25px 20px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+      box-shadow: 0 8px 20px rgba(128, 0, 0, 0.08);
     }
 
     .tarjeta-integrante {
       background: rgba(255, 255, 255, 0.95);
-      border: 1px solid rgba(216, 192, 173, 0.7);
+      border: 1px solid rgba(139, 0, 0, 0.3);
       border-radius: 15px;
       padding: 16px;
       margin-bottom: 15px;
@@ -528,7 +528,7 @@
     .tarjeta-integrante .titulo-integrante {
       font-family: 'Cormorant Garamond', serif;
       font-size: 20px;
-      color: #8C6D46;
+      color: #8B0000;
       font-weight: 600;
       margin-bottom: 12px;
       text-align: center;
@@ -538,18 +538,18 @@
       width: 100%;
       padding: 12px 14px;
       border-radius: 10px;
-      border: 1px solid #d8c0ad;
+      border: 1px solid rgba(139, 0, 0, 0.3);
       background: #ffffff;
       outline: none;
       font-family: 'Montserrat', sans-serif;
-      color: #5a2525;
+      color: #4a0000;
       font-size: 14px;
       margin-bottom: 12px;
     }
 
     .rsvp-container input[type="text"]:focus {
-      border-color: #8C6D46;
-      box-shadow: 0 0 6px rgba(140, 109, 70, 0.3);
+      border-color: #8B0000;
+      box-shadow: 0 0 6px rgba(139, 0, 0, 0.3);
     }
 
     .opciones { display: flex; gap: 10px; }
@@ -559,17 +559,18 @@
       display: block;
       text-align: center;
       padding: 10px 5px;
-      border: 1px solid #d8c0ad;
+      border: 1px solid rgba(139, 0, 0, 0.3);
       border-radius: 10px;
       cursor: pointer;
       font-size: 12px;
       background: #ffffff;
+      color: #8B0000;
       transition: .2s;
     }
 
     .opcion input:checked + label {
-      background: #8C6D46;
-      border-color: #8C6D46;
+      background: #8B0000;
+      border-color: #8B0000;
       color: #ffffff;
       font-weight: 600;
       outline: none;
@@ -580,7 +581,7 @@
       border: 0;
       border-radius: 30px;
       padding: 16px;
-      background: linear-gradient(135deg, #A68B5B 0%, #8C6D46 100%);
+      background: linear-gradient(135deg, #800000 0%, #4a0000 100%);
       color: white;
       font-family: 'Cinzel', serif;
       font-size: 12px;
@@ -589,7 +590,7 @@
       font-weight: 600;
       cursor: pointer;
       margin-top: 15px;
-      box-shadow: 0 4px 12px rgba(140, 109, 70, 0.3);
+      box-shadow: 0 4px 12px rgba(128, 0, 0, 0.35);
       outline: none;
     }
 
@@ -603,7 +604,8 @@
       padding: 15px;
       border-radius: 12px;
       background: #ffffff;
-      border: 1px solid #d9bda8;
+      border: 1px solid rgba(139, 0, 0, 0.3);
+      color: #8B0000;
       font-size: 13.5px;
       line-height: 1.5;
     }
@@ -620,17 +622,17 @@
       width: 100%;
       padding: 35px 20px 25px;
       text-align: center;
-      border: 2px solid #A68B5B;
+      border: 2px solid #8B0000;
       border-radius: 20px;
       background: #ffffff;
-      box-shadow: 0 10px 30px rgba(140, 109, 70, 0.15);
+      box-shadow: 0 10px 30px rgba(139, 0, 0, 0.15);
     }
 
-    .pase-adorno { font-size: 20px; color: #A68B5B; margin-bottom: 5px; }
+    .pase-adorno { font-size: 20px; color: #8B0000; margin-bottom: 5px; }
 
     .pase-titulo {
       font-family: 'Cormorant Garamond', serif;
-      color: #8C6D46;
+      color: #8B0000;
       font-size: 28px;
       font-weight: 700;
       letter-spacing: 2px;
@@ -638,7 +640,7 @@
       margin: 0 0 10px;
     }
 
-    .pase-linea { width: 80px; height: 1px; background: #A68B5B; margin: 0 auto 20px; }
+    .pase-linea { width: 80px; height: 1px; background: #8B0000; margin: 0 auto 20px; }
 
     .pase-nombre {
       font-family: 'Cormorant Garamond', serif;
@@ -652,7 +654,7 @@
       display: inline-block;
       margin-top: 10px;
       padding: 6px 16px;
-      background: #8C6D46;
+      background: #8B0000;
       color: #ffffff;
       border-radius: 20px;
       font-size: 11px;
@@ -663,7 +665,7 @@
     .pase-intransferible {
       margin-top: 20px;
       padding-top: 12px;
-      border-top: 1px dashed #d8c0ad;
+      border-top: 1px dashed rgba(139, 0, 0, 0.3);
       font-size: 11px;
       color: #666;
       font-style: italic;
@@ -676,22 +678,23 @@
       border-radius: 30px;
       padding: 12px 20px;
       margin-top: 12px;
-      background: #8C6D46;
-      color: #fffaf2;
+      background: #8B0000;
+      color: #ffffff;
       font-family: 'Montserrat', sans-serif;
       font-size: 13px;
       font-weight: 600;
       cursor: pointer;
       outline: none;
+      box-shadow: 0 4px 10px rgba(139, 0, 0, 0.2);
     }
 
-    .boton-descargar:hover { background: #735735; }
+    .boton-descargar:hover { background: #600000; }
 
-    /* SECCIÓN RECUPERAR PASE DE INDEX 1 */
+    /* SECCIÓN RECUPERAR PASE EN ROJO */
     .recuperar-container {
       margin-top: 35px;
       padding-top: 25px;
-      border-top: 1px dashed #c9a24e;
+      border-top: 1px dashed rgba(139, 0, 0, 0.4);
       text-align: center;
     }
 
@@ -699,7 +702,7 @@
       font-family: 'Cormorant Garamond', serif;
       font-size: 18px;
       font-weight: 600;
-      color: #8C6D46;
+      color: #8B0000;
       margin-bottom: 6px;
     }
 
@@ -712,8 +715,8 @@
 
     .btn-secundario {
       background: transparent;
-      border: 1px solid #8C6D46;
-      color: #8C6D46;
+      border: 1px solid #8B0000;
+      color: #8B0000;
       font-family: 'Cinzel', serif;
       font-size: 11px;
       letter-spacing: 1px;
@@ -726,7 +729,7 @@
     }
 
     .btn-secundario:hover {
-      background: #8C6D46;
+      background: #8B0000;
       color: #ffffff;
     }
   </style>
@@ -857,7 +860,7 @@
               <div class="evento">
                 <div class="lado-izq">
                   <div class="icono">
-                    <svg viewBox="0 0 24 24" fill="#8C6D46">
+                    <svg viewBox="0 0 24 24" fill="#8B0000">
                       <path d="M11 2h2v3h3v2h-3v3h-2V7H8V5h3V2zm-2 9h6l5 3v8H4v-8l5-3zm3 2a2 2 0 0 0-2 2v5h4v-5a2 2 0 0 0-2-2z"/>
                     </svg>
                   </div>
@@ -967,7 +970,7 @@
             <img src="asistencia.png" alt="Confirmación de Asistencia">
         </div>
 
-        <!-- 11. FORMULARIO RSVP Y RECUPERACIÓN DE PASES (DE INDEX 1) -->
+        <!-- 11. FORMULARIO RSVP Y RECUPERACIÓN DE PASES (EN ROJO) -->
         <div class="rsvp-container fade-up reveal-section">
             <div class="rsvp-tarjeta">
                 
@@ -1132,7 +1135,7 @@
     setInterval(updateCountdown, 1000);
     updateCountdown();
 
-    /* RSVP Y LÓGICA DE ASISTENCIA CON EL EXEC DEL INDEX 2 */
+    /* RSVP Y LÓGICA DE ASISTENCIA CON EL EXEC DE INDEX 2 */
     const API_URL = "https://script.google.com/macros/s/AKfycbwSQDaViNy2j7nwMulf9wEKfKNcWZhUaQdA0lQ5RshzhfMNSXtg6I0xCX4MZqpZ7QCI/exec";
     let maxPasesPermitidos = 1;
 
@@ -1311,7 +1314,7 @@
       }
     }
 
-    /* RENDERIZADOR AUXILIAR DE PASES DE INDEX 1 */
+    /* RENDERIZADOR AUXILIAR DE PASES EN ROJO */
     function renderizarTarjetaPase(contenedorHTML, index, nombrePersona, prefijo) {
       const idContenido = `contenidoPase_${prefijo}_${index}`;
       const divPase = document.createElement('div');
