@@ -955,8 +955,8 @@
     setInterval(updateCountdown, 1000);
     updateCountdown();
 
-    /* COLOCA TU URL DE APPS SCRIPT AQUÍ */
-    const API_URL = "https://script.google.com/macros/s/AKfycbzBiXmk2q6qgGJMhtwU9y2ixYSuXvFU9ClGlOqgJ8dHvmXh_9voTacTPVrp85wECQn4-Q/exec";
+    /* URL DE TU GOOGLE APPS SCRIPT */
+    const API_URL = "https://script.google.com/macros/s/AKfycbwVB9mbFrrSQsZWfX-KJ787QZ8bsGZ-LwiB1cFZXVXYJv8IPXa6vPVLgANY8rHNZ0Ufiw/exec";
 
     function cambiarAsistencia() {
       const vaAsistir = document.getElementById('confirmarAsistencia').value;
@@ -966,35 +966,6 @@
       } else {
         campoAsistentes.style.display = 'none';
       }
-    }
-
-    function llamarAPI(parametros) {
-      return new Promise((resolve, reject) => {
-        const callback = 'cb_' + Date.now() + '_' + Math.floor(Math.random() * 9999);
-        const script = document.createElement('script');
-        const query = new URLSearchParams({ ...parametros, callback });
-        const tiempo = setTimeout(() => { limpiar(); reject("Tiempo agotado"); }, 12000);
-
-        window[callback] = function(data) {
-          clearTimeout(tiempo);
-          limpiar();
-          resolve(data);
-        };
-
-        function limpiar() {
-          delete window[callback];
-          if (script.parentNode) script.parentNode.removeChild(script);
-        }
-
-        script.onerror = function() {
-          clearTimeout(tiempo);
-          limpiar();
-          reject("Error de conexión");
-        };
-
-        script.src = API_URL + '?' + query.toString();
-        document.body.appendChild(script);
-      });
     }
 
     async function enviarRegistro() {
@@ -1008,9 +979,8 @@
       const mensaje = document.getElementById('mensaje');
       mensaje.className = 'mensaje-rsvp';
 
-      // Validación: Contar palabras escritas (mínimo 3: Nombre + Apellido Paterno + Apellido Materno)
+      // Validación de nombre completo
       const palabras = nombreVal.split(/\s+/).filter(word => word.length > 0);
-
       if (palabras.length < 3) {
         mostrarMensaje('Por favor ingresa tu nombre completo (Nombre y ambos Apellidos) para continuar.');
         return;
@@ -1020,17 +990,26 @@
         numAsistentesVal = 0;
       }
 
+      // 1. DESHABILITAR EL BOTÓN INMEDIATAMENTE
       boton.disabled = true;
       boton.textContent = 'Enviando...';
 
-      try {
-        await llamarAPI({
-          action: 'registrarIndividuales',
-          nombre: nombreVal,
-          asistencia: asistenciaVal,
-          asistentes: numAsistentesVal
-        });
+      // Construcción de la URL con los parámetros requeridos por la función doGet de Google Apps Script
+      const queryParams = new URLSearchParams({
+        action: 'registrarIndividuales',
+        nombre: nombreVal,
+        asistencia: asistenciaVal,
+        asistentes: numAsistentesVal
+      });
 
+      const fullUrl = `${API_URL}?${queryParams.toString()}`;
+
+      try {
+        // Usamos mode: 'no-cors' para realizar la petición directa a Google Apps Script
+        // de forma segura desde dispositivos móviles y evitar falsos errores de CORS/Timeout.
+        await fetch(fullUrl, { mode: 'no-cors' });
+
+        // Si la petición finalizó sin caer al catch, asumimos éxito
         document.getElementById('formularioCampos').style.display = 'none';
 
         if (asistenciaVal === 'Sí') {
@@ -1040,8 +1019,8 @@
         }
 
       } catch (err) {
-        console.error(err);
-        mostrarMensaje('Hubo un error al guardar la información. Inténtalo de nuevo.');
+        console.error("Error al enviar respuesta:", err);
+        mostrarMensaje('Hubo un inconveniente al guardar. Por favor, inténtalo de nuevo.');
         boton.disabled = false;
         boton.textContent = 'Confirmar respuesta';
       }
